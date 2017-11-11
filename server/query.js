@@ -130,13 +130,10 @@ module.exports = {
   },
 
   updateUserToken: function(nameUser, sessionToken){
-    console.log("Get all users from database");
+    console.log("Updating token of user " + nameUser);
     connection.query('UPDATE users SET session_token = ? WHERE name = ?' , sessionToken , nameUser, function (error, results, fields) {
         if (error) throw error;
-        console.log('All users ', results);
       });
-  },
-
-
+  }
 
 }
