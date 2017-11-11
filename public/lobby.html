@@ -12,6 +12,28 @@
             <div class="row">
                 <div class="col">
                     Team mates:
+                    <table class="table">
+                      <thead>
+
+                        <tbody  id="list">
+                          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                          <script type="text/javascript">
+                          var json = [
+                            { id: 1, name: 'user1' },
+                            { id: 2, name: 'user2' },
+                            { id: 3, name: 'user3' },
+                            { id: 4, name: 'user4' }
+                          ];
+
+                          var html = '<tr>';
+                          for (var i = 0; i < json.length; ++i) {
+                              html += '<td>'+ json[i].name +'</td>'+'</tr>'+'<tr>' ;
+                          };
+                          $('#list').append(html);
+                          </script>
+                        </tbody>
+                    </thead>
+                  </table>
                 </div>
                 <div class="col">
                     Game:
