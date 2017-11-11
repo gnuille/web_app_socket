@@ -1,12 +1,33 @@
-var express = require('express')
-var app = express()
-var server = require('http').createServer(app);
-var path = require("path")
+//server
+var app = require('express')()
+var http = require('http').Server(app)
+var io = require('socket.io')(http)
 
-var port = 3000;
 
-server.listen(port, function () {
-  console.log('Server listening at port %d', port);
+//sql
+
+var query = require(__dirname + '/server/query.js')
+
+
+
+
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + "/public/index.html")
 });
 
-app.use(express.static(path.join(__dirname, 'public')))
+io.on('connection', function(socket){
+  console.log('a user connected')
+  socket.on('disconect', function(){
+    //treure al nick de la BD
+    console.log("a user disconected")
+  })
+
+  socket.on("new player", query.newConnection)
+
+
+});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000')
+});
