@@ -11,7 +11,7 @@
         <form class="formulari">
             <h2> Login </h2>
             <div class="form-group">
-                    <input type="text" class="form-control" id="nick" placeholder="&#128187; User name">
+                    <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
                 </div>
 
             <button type="submit" onClick="connect()" class="btn_log">Get in!</button>
@@ -25,7 +25,7 @@
 
             }
             socket.on("can enter", function(correct){
-              if(correct) window.location.href = "./rooms/create.html";
+              if(res == 0) window.location.href = "./rooms/create.html";
               else console.log("pene")
             })
         </script>

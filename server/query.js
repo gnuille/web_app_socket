@@ -90,7 +90,11 @@ module.exports = {
     console.log("checking user");
     connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
       if(error) throw error;
-      return results[0].numero > 0;
+      console.log("results = "+results)
+      console.log("results[0] ="+results[0])
+      console.log("results[0].numero ="+results[0].numero)
+      var a = results[0].numero
+      return a
     });
 
  },

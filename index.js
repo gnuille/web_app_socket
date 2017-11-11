@@ -10,12 +10,13 @@ var query = require(__dirname + '/server/query.js')
 var registeredSockets = [];
 
 function checkinsert(user){
-  var correct;
-  correct = !query.existsUser(user);
-  if(correct){
+  var res;
+  res = query.existsUser(user);
+  console.log("result= "+res);
+  if(res == 0){
     query.newConnection(user);
   }
-  registeredSockets[0].emit("can enter", correct);
+  registeredSockets[0].emit("can enter", res);
 }
 
 io.on('connection', function(socket){
