@@ -46,10 +46,12 @@ module.exports = {
   //Get users
   getAllTables: function(){
     console.log("Get all tables from database");
+    return new Promise(function (fulfill, reject){
     connection.query('select * from tables' , function (error, results, fields) {
-        if (error) throw error;
-        console.log('All tables ', results);
+        if (error) throw(error);
+        else fulfill(results);
       });
+    });
   },
 
   getTables: function(key){
