@@ -57,6 +57,38 @@ function createRoom(nomRoom){
     }, reject);
   });
 }
+
+function joinRoom(nameRoom, nameUser){
+
+  var userId, tableId;
+
+  return new Promise(function (fulfill, reject){
+      query.getUserId(nameUser).done(function (res){
+        try {
+          console.log('test ' + res[0].id)
+          userId = res[0].id;
+        } catch (ex) {
+          reject(ex);
+        }
+      }, reject);
+  });
+  return new Promise(function (fulfill, reject){
+      query.getTableId(nameRoom).done(function (res){
+        try {
+          console.log('test ' + res[0].id)
+          tableId = res[0].id;
+        } catch (ex) {
+          reject(ex);
+        }
+      }, reject);
+  });
+
+  query.associatePlayerWithTable(tableId,userId);
+  registeredSockets[0].emit("join lobby");
+
+}
+
+
 function write_all_tables() {
   return new Promise(function (fulfill, reject){
     query.getAllTables().done(function (res){
@@ -69,6 +101,9 @@ function write_all_tables() {
     }, reject);
     });
 }
+
+
+
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')
@@ -76,10 +111,11 @@ io.on('connection', function(socket){
     //treure al nick de la BD
     console.log("a user disconected")
   })
-socket.on('all_tables',write_all_tables)
+ socket.on('all_tables',write_all_tables)
  socket.on("new player", checkinsert)
  socket.on("search tables", searchTables)
  socket.on("new room", createRoom)
+ socket.on("join room", joinRoom)
 
 });
 
