@@ -1,5 +1,6 @@
 //server
 var express = require('express')
+var Promise   = require('promise');
 var app = express()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
@@ -7,17 +8,27 @@ app.use(express.static(__dirname + '/public'))
 //sql
 
 var query = require(__dirname + '/server/query.js')
+var registeredSockets = [];
 
 function checkinsert(user){
-  var correct;
-  correct = !query.existsUser(user);
-  if(correct){
-    query.newConnection(user);
-  }
-  socket.emit("can enter", correct);
+  return new Promise(function (fulfill, reject){
+    query.existsUser(user).done(function (res){
+      try {
+        console.log('test ' + res[0].numero)
+
+        if(res[0].numero == 0){
+          query.newConnection(user);
+        }
+        registeredSockets[0].emit("can enter", res[0].numero);
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+  });
 }
 
 io.on('connection', function(socket){
+  registeredSockets[0] = socket;
   console.log('a user connected')
   socket.on('disconect', function(){
     //treure al nick de la BD

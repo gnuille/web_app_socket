@@ -1,4 +1,5 @@
-var mysql      = require('mysql');
+var mysql     = require('mysql');
+var Promise   = require('promise');
 var connection = mysql.createConnection({
   host     : 'us-cdbr-sl-dfw-01.cleardb.net',
   user     : 'ba6f57bed71278',
@@ -34,10 +35,25 @@ module.exports = {
   },
   //Get users
   getAllUsers: function(){
-    console.log("New game table created %s", nameTable);
+    console.log("Get all users from database");
     connection.query('select * from users' , function (error, results, fields) {
         if (error) throw error;
         console.log('All users ', results);
+      });
+  },
+  //Get users
+  getAllTables: function(){
+    console.log("Get all tables from database");
+    connection.query('select * from tables' , function (error, results, fields) {
+        if (error) throw error;
+        console.log('All tables ', results);
+      });
+  },
+  getTables: function(key){
+    console.log("Searching a table");
+    connection.query('select * from tables where nom = ?' ,key, function (error, results, fields) {
+        if (error) throw error;
+        
       });
   },
   //Add player to table
@@ -65,7 +81,7 @@ module.exports = {
   },
   //Add a new set of challenges
   createChallenge: function(challenge){
-    console.log("New challenge %s added", challenge);
+    console.log("New questionSet %s added", challenge);
     connection.query('INSERT INTO questionSet(challenge) VALUES (?)', challenge , function (error, results, fields) {
         if (error) throw error;
       });
@@ -79,10 +95,19 @@ module.exports = {
       });
   },
    existsUser: function(nameUser){
-    console.log("checking user");
-    connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
-      if(error) throw error;
-      return results[0].numero > 0;
+    console.log("checking user " + nameUser);
+    return new Promise(function (fulfill, reject){
+      connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
+        if (error) throw(error);
+        else fulfill(results);
+      });
+      //if(error) throw error;
+      //console.log("results = "+results)
+      //console.log("results[0] ="+results[0])
+      //console.log("results[0].numero ="+results[0].numero)
+      //var a = results[0].numero
+      //callback(null, a);
+      //return a;
     });
 
  },
