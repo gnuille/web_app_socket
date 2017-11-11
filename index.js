@@ -69,6 +69,20 @@ function write_all_tables() {
     }, reject);
     });
 }
+
+/*function searchLobby(nickname){
+  return new Promise(function (fulfill, reject) {
+    query.().done(function (res) {
+      try {
+        console.log(res)
+        registeredSockets[0].emit("table_found", res);
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+    });
+}*/
+
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')
@@ -77,10 +91,10 @@ io.on('connection', function(socket){
     console.log("a user disconected")
   })
 socket.on('all_tables',write_all_tables)
- socket.on("new player", checkinsert)
- socket.on("search tables", searchTables)
- socket.on("new room", createRoom)
-
+socket.on("new player", checkinsert)
+socket.on("search tables", searchTables)
+socket.on("new room", createRoom)
+socket.on("recived nickname",searchLobby)
 });
 
 http.listen(3000, function(){
