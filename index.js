@@ -11,20 +11,11 @@ var query = require(__dirname + '/server/query.js')
 var registeredSockets = [];
 
 function checkinsert(user){
-  var res;
-  res = query.existsUser(user);
-  console.log("result= "+res);
-  if(res == 0){
-    query.newConnection(user);
-  }
-  registeredSockets[0].emit("can enter", res);
-}
-
-function checkinsert(user){
   return new Promise(function (fulfill, reject){
     query.existsUser(user).done(function (res){
       try {
-        console.log('test ' + res)
+        console.log('test ' + res[0].numero)
+
         if(res[0].numero == 0){
           query.newConnection(user);
         }
@@ -45,7 +36,7 @@ io.on('connection', function(socket){
   })
 
  socket.on("new player", checkinsert)
- socket.on("search room", sendRooms)
+
 
 });
 
