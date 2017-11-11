@@ -1,4 +1,5 @@
-var mysql      = require('mysql');
+var mysql     = require('mysql');
+var Promise   = require('promise');
 var connection = mysql.createConnection({
   host     : 'us-cdbr-sl-dfw-01.cleardb.net',
   user     : 'ba6f57bed71278',
@@ -87,14 +88,19 @@ module.exports = {
       });
   },
    existsUser: function(nameUser){
-    console.log("checking user");
-    connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
-      if(error) throw error;
-      console.log("results = "+results)
-      console.log("results[0] ="+results[0])
-      console.log("results[0].numero ="+results[0].numero)
-      var a = results[0].numero
-      return a
+    console.log("checking user " + nameUser);
+    return new Promise(function (fulfill, reject){
+      connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
+        if (error) throw(error);
+        else fulfill(results);
+      });
+      //if(error) throw error;
+      //console.log("results = "+results)
+      //console.log("results[0] ="+results[0])
+      //console.log("results[0].numero ="+results[0].numero)
+      //var a = results[0].numero
+      //callback(null, a);
+      //return a;
     });
 
  },
