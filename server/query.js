@@ -1,9 +1,9 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : '127.0.0.1',
-  user     : 'test',
-  password : 'maincra',
-  database : 'drinking_game'
+  host     : 'us-cdbr-sl-dfw-01.cleardb.net',
+  user     : 'ba6f57bed71278',
+  password : 'aa8200a1',
+  database : 'ibmx_32dfec4ca009a8b'
 });
 connection.connect();
 
@@ -78,5 +78,20 @@ module.exports = {
         console.log('User deleted ', nameTable);
       });
   },
+   existsUser: function(nameUser){
+    console.log("checking user");
+    connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
+      if(error) throw error;
+      return results[0].numero > 0;
+    });
+
+ },
+  existsTable: function(nameTable){
+    console.log("checking table");
+    connection.query('SELECT COUNT(*) AS numero FROM tables WHERE name = ?', nameTable, function(error, results, fields){
+      if(error) throw error;
+      return results[0].numero > 0;
+    })
+  }
 
 }
