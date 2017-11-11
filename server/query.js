@@ -33,6 +33,7 @@ module.exports = {
         console.log('User deleted ', nameTable);
       });
   },
+  
   //Get users
   getAllUsers: function(){
     console.log("Get all users from database");
@@ -41,6 +42,7 @@ module.exports = {
         console.log('All users ', results);
       });
   },
+  
   //Get users
   getAllTables: function(){
     console.log("Get all tables from database");
@@ -49,13 +51,17 @@ module.exports = {
         console.log('All tables ', results);
       });
   },
+  
   getTables: function(key){
     console.log("Searching a table");
+    return new Promise(function (fulfill, reject){
     connection.query('select * from tables where nom = ?' ,key, function (error, results, fields) {
-        if (error) throw error;
-        
+        if (error) throw(error);
+        else fulfill(results);
       });
+    });
   },
+  
   //Add player to table
   associatePlayerWithTable: function(idTable, idUser){
     console.log("New player-table association %s %s", idTable, idUser);
@@ -64,6 +70,7 @@ module.exports = {
         console.log('User deleted ', idTable);
       });
   },
+  
   //Add games to tables
   associateTableWithGames: function(idTable, idUser){
     console.log("New player-table association %s %s", idTable, idUser);
@@ -72,6 +79,7 @@ module.exports = {
         console.log('User deleted ', idTable);
       });
   },
+  
   //Add challenge to a set of challenges
   createChallenge: function(challenge, idSet){
     console.log("New challenge %s added to %s", challenge, idSet);
@@ -79,6 +87,7 @@ module.exports = {
         if (error) throw error;
       });
   },
+  
   //Add a new set of challenges
   createChallenge: function(challenge){
     console.log("New questionSet %s added", challenge);
@@ -86,7 +95,8 @@ module.exports = {
         if (error) throw error;
       });
   },
-    //Add new table
+  
+  //Add new table
   deleteNewGameTable: function(nameTable){
     console.log("New game table created %s", nameTable);
     connection.query('DELETE FROM tables WHERE name = ?', nameTable , function (error, results, fields) {
@@ -94,29 +104,25 @@ module.exports = {
         console.log('User deleted ', nameTable);
       });
   },
-   existsUser: function(nameUser){
+  
+  existsUser: function(nameUser){
     console.log("checking user " + nameUser);
     return new Promise(function (fulfill, reject){
       connection.query('SELECT COUNT(*) AS numero FROM users WHERE name = ?', nameUser, function(error, results, fields){
         if (error) throw(error);
         else fulfill(results);
       });
-      //if(error) throw error;
-      //console.log("results = "+results)
-      //console.log("results[0] ="+results[0])
-      //console.log("results[0].numero ="+results[0].numero)
-      //var a = results[0].numero
-      //callback(null, a);
-      //return a;
     });
-
  },
+
   existsTable: function(nameTable){
-    console.log("checking table");
-    connection.query('SELECT COUNT(*) AS numero FROM tables WHERE name = ?', nameTable, function(error, results, fields){
-      if(error) throw error;
-      return results[0].numero > 0;
-    })
+    console.log("checking table " + nameTable);
+      return new Promise(function (fulfill, reject){
+        connection.query('SELECT COUNT(*) AS numero FROM tables WHERE name = ?', nameTable, function(error, results, fields){
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
   }
 
 }
