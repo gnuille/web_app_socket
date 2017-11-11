@@ -16,7 +16,7 @@ module.exports = {
       });
   },
   deleteConnection: function(nameUser){
-    console.log("new user conected %s", idUser);
+    console.log("new user conected %s", nameUser);
     connection.query('DELETE FROM users WHERE name = ?', nameUser , function (error, results, fields) {
         if (error) throw error;
         console.log('User deleted ', nameUser);

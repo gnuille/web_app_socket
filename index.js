@@ -20,7 +20,6 @@ io.on('connection', function(socket){
 
   socket.on("new player", query.newConnection)
   socket.on("new player", query.getAllUsers)
-  socket.on("new player", query.deleteConnection)
 
 
 });
