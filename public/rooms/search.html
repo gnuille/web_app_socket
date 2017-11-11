@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <h3>Choose a Room to start Playing (drinking)</h3>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">Search</a></li>
+    <li><a href="./create.html">Create Room</a></li>
+  </ul>
+  <div class="search-div" id ="">
+    <input type="" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
+    <input type="submit" value="Search">
+    <div class="rooms" style="margin: 10px;">
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr class="bg-success">
+            <th scope="col">Room's Name</th>
+            <th></th>
+
+          </tr>
+          <tbody  id="list">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript">
+            var json = [
+              { id: 1, name: 'taula1' },
+              { id: 2, name: 'taula2' },
+              { id: 3, name: 'taula3' },
+              { id: 4, name: 'taula4' }
+            ];
+
+            var html = '<tr>';
+            for (var i = 0; i < json.length; ++i) {
+                var name = json[i].name;
+                html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
+            };
+            $('#list').append(html);
+            </script>
+          </tbody>
+    </div>
+  </div>
+  <p style="margin: 10px;"> Redirecciona al Lobby un cop clica join a una sala</p>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
