@@ -32,16 +32,17 @@
             var socket = io();
 
             function search(){
+              $('.rooms').empty();
               socket.emit("search tables", document.getElementById("key"));
             }
             socket.on("send tables", function(res){
-              var html = '<tr>';
+              var html = '<tr class="">';
               for (var i = 0; i < res.length; ++i) {
                   var name = res[i].name;
                   html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
               };
               $('#list').append(html);
-            })            
+            })
             </script>
           </tbody>
       </thead>
