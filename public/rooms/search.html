@@ -32,11 +32,13 @@
             var socket = io();
 
             function search(){
+
               console.log("ClicK! "+document.getElementById("key"))
               socket.emit("search tables", document.getElementById("key").value);
             }
             socket.on("table_ready", function(res){
               var html = '<tr>';
+
               for (var i = 0; i < res.length; ++i) {
                   var name = res[i].name;
                   html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
