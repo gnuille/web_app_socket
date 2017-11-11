@@ -57,6 +57,18 @@ function createRoom(nomRoom){
     }, reject);
   });
 }
+function write_all_tables() {
+  return new Promise(function (fulfill, reject){
+    query.getAllTables().done(function (res){
+      try {
+        console.log(res)
+        registeredSockets[0].emit("table_ready", res);
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+    });
+}
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')
@@ -64,7 +76,7 @@ io.on('connection', function(socket){
     //treure al nick de la BD
     console.log("a user disconected")
   })
-
+socket.on('all_tables',write_all_tables)
  socket.on("new player", checkinsert)
  socket.on("search tables", searchTables)
  socket.on("new room", createRoom)

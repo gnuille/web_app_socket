@@ -30,7 +30,8 @@
             <script src="/socket.io/socket.io.js"></script>
             <script type="text/javascript">
             var socket = io();
-
+            socket.emit('all_tables');
+            
             function search(){
               $('#list').empty();
               console.log("ClicK! "+document.getElementById("key"))
