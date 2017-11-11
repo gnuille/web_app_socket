@@ -15,10 +15,11 @@ function checkinsert(user){
   if(correct){
     query.newConnection(user);
   }
-  registeredSockets[data.socketid].emit("can enter", correct);
+  registeredSockets[0].emit("can enter", correct);
 }
 
 io.on('connection', function(socket){
+  registeredSockets[0] = socket;
   console.log('a user connected')
   socket.on('disconect', function(){
     //treure al nick de la BD
@@ -26,7 +27,7 @@ io.on('connection', function(socket){
   })
 
  socket.on("new player", checkinsert)
- 	registeredSockets[socket.id] = socket;
+
 
 
 
