@@ -106,16 +106,25 @@ function write_all_tables() {
 
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
-  console.log('a user connected')
+  socket.broadcast.to(socket.id).emit('recived id', socket.id);
+
   socket.on('disconect', function(){
     //treure al nick de la BD
     console.log("a user disconected")
   })
+<<<<<<< HEAD
+  socket.on('all_tables',write_all_tables)
+  socket.on("new player", checkinsert)
+  socket.on("search tables", searchTables)
+  socket.on("new room", createRoom)
+
+=======
  socket.on('all_tables',write_all_tables)
  socket.on("new player", checkinsert)
  socket.on("search tables", searchTables)
  socket.on("new room", createRoom)
  socket.on("join room", joinRoom)
+>>>>>>> refs/remotes/origin/master
 
 });
 

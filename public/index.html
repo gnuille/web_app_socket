@@ -18,14 +18,19 @@
         </form>
         <script src="/socket.io/socket.io.js"></script>
         <script>
+            var nickcookie;
             var socket = io();
             function connect() {
                 var name = document.getElementById("nick").value;
+                nickcookie="nickname="+name+";expires=Thu, 18 Dec 2020 12:00:00 UTC"
                 socket.emit("new player", name);
 
             }
             socket.on("can enter", function(correct){
-              if(correct == 0) window.location.href = "./rooms/create.html";
+              if(correct == 0){
+                document.cookie=nickcookie;
+                window.location.href = "./rooms/create.html";
+              }
               else console.log("pene")
             })
         </script>
