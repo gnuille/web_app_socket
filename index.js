@@ -8,6 +8,14 @@ app.use(express.static(__dirname + '/public'))
 
 var query = require(__dirname + '/server/query.js')
 
+function checkinsert(user){
+  var correct;
+  correct = !query.existsUser(user);
+  if(correct){
+    query.newConnection(user);
+  }
+  socket.emit("can enter", correct);
+}
 
 io.on('connection', function(socket){
   console.log('a user connected')
@@ -16,8 +24,7 @@ io.on('connection', function(socket){
     console.log("a user disconected")
   })
 
-  socket.on("new player", query.newConnection)
-  socket.on("new player", query.getAllUsers)
+ socket.on("new player", checkinsert)
 
 
 });

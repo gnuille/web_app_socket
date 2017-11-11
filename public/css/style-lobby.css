@@ -3,12 +3,23 @@
 }
 
 .square {
+    margin-top: 15px;
+    text-align: center;
     margin: auto;
     background: #92e8c9;
     padding: 15px;
+    width: 60%;
 
 }
 
 .btn {
     cursor: pointer;
+    background: #f4ebbe;
+    border: 1px solid #454545;
+
+}
+
+.btn:hover{
+    background: #454545;
+    color: white;
 }
