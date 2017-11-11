@@ -27,7 +27,10 @@
           </tr>
           <tbody  id="list">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+
             <script type="text/javascript">
+            var socket = io();
             var json = [
               { id: 1, name: 'taula1' },
               { id: 2, name: 'taula2' },
