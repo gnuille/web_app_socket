@@ -15,8 +15,8 @@
     <li><a href="./create.html">Create Room</a></li>
   </ul>
   <div class="search-div" id ="">
-    <input type="" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
-    <input type="submit" value="Search">
+    <input type="" id="key" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
+    <input type="button" onClikc="search()" value="Search">
     <div class="rooms" style="margin: 10px;">
       <table class="table table-hover table-dark">
         <thead>
@@ -28,8 +28,10 @@
           <tbody  id="list">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="/socket.io/socket.io.js"></script>
-
             <script type="text/javascript">
+            function search(){
+              socket.emit("search tables", document.getElementById("key"));
+            }
             var socket = io();
             var json = [
               { id: 1, name: 'taula1' },

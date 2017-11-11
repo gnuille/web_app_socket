@@ -48,6 +48,13 @@ module.exports = {
         console.log('All tables ', results);
       });
   },
+  getTables: function(key){
+    console.log("Searching a table");
+    connection.query('select * from tables where nom = ?' ,key, function (error, results, fields) {
+        if (error) throw error;
+        
+      });
+  },
   //Add player to table
   associatePlayerWithTable: function(idTable, idUser){
     console.log("New player-table association %s %s", idTable, idUser);

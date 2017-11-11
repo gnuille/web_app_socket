@@ -19,6 +19,10 @@ function checkinsert(user){
   registeredSockets[0].emit("can enter", res);
 }
 
+function sendRooms(key){
+  
+}
+
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')
@@ -28,7 +32,7 @@ io.on('connection', function(socket){
   })
 
  socket.on("new player", checkinsert)
-
+ socket.on("search room", sendRooms)
 
 
 
