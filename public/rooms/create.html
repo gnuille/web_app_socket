@@ -16,9 +16,16 @@
   </ul>
   <div class="">
     <form class="form-create" action="#" method="post" >
-      <input type="text" placeholder="Text your room's name..." required style="margin: 10px; width: 60%;">
-      <input type="submit" value="Create!">
+      <input type="text" id="to_create" placeholder="Text your room's name..." required style="margin: 10px; width: 60%;">
+      <input type="button" onClick="submit_room()" value="Create!">
       <p style="margin: 10px;">redirecciona al lobby i ets l'admin</p>
+      <script src="/socket.io/socket.io.js"></script>
+      <script type="text/javascript">
+        var socket = io();
+        function submit_room(){
+
+        }
+      </script>
     </form>
   </div>
 </div>

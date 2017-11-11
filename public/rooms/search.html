@@ -15,8 +15,8 @@
     <li><a href="./create.html">Create Room</a></li>
   </ul>
   <div class="search-div" id ="">
-    <input type="" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
-    <input type="submit" value="Search">
+    <input type="" id="key" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
+    <input type="button" onClikc="search()" value="Search">
     <div class="rooms" style="margin: 10px;">
       <table class="table table-hover table-dark">
         <thead>
@@ -28,22 +28,20 @@
           <tbody  id="list">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="/socket.io/socket.io.js"></script>
-
             <script type="text/javascript">
             var socket = io();
-            var json = [
-              { id: 1, name: 'taula1' },
-              { id: 2, name: 'taula2' },
-              { id: 3, name: 'taula3' },
-              { id: 4, name: 'taula4' }
-            ];
 
-            var html = '<tr>';
-            for (var i = 0; i < json.length; ++i) {
-                var name = json[i].name;
-                html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
-            };
-            $('#list').append(html);
+            function search(){
+              socket.emit("search tables", document.getElementById("key"));
+            }
+            socket.on("send tables", function(res){
+              var html = '<tr>';
+              for (var i = 0; i < res.length; ++i) {
+                  var name = res[i].name;
+                  html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
+              };
+              $('#list').append(html);
+            })            
             </script>
           </tbody>
     </div>

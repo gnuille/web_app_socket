@@ -45,7 +45,7 @@ io.on('connection', function(socket){
   })
 
  socket.on("new player", checkinsert)
-
+ socket.on("search room", sendRooms)
 
 });
 
