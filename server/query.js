@@ -34,10 +34,18 @@ module.exports = {
   },
   //Get users
   getAllUsers: function(){
-    console.log("New game table created %s", nameTable);
+    console.log("Get all users from database");
     connection.query('select * from users' , function (error, results, fields) {
         if (error) throw error;
         console.log('All users ', results);
+      });
+  },
+  //Get users
+  getAllTables: function(){
+    console.log("Get all tables from database");
+    connection.query('select * from tables' , function (error, results, fields) {
+        if (error) throw error;
+        console.log('All tables ', results);
       });
   },
   //Add player to table
@@ -65,7 +73,7 @@ module.exports = {
   },
   //Add a new set of challenges
   createChallenge: function(challenge){
-    console.log("New challenge %s added", challenge);
+    console.log("New questionSet %s added", challenge);
     connection.query('INSERT INTO questionSet(challenge) VALUES (?)', challenge , function (error, results, fields) {
         if (error) throw error;
       });
