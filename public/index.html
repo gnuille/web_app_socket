@@ -5,15 +5,6 @@
     <title>webapp</title>
   </head>
   <body>
-    <input id = "nom" placeholder ="hehe xd el teu nom"  />
-    <button id ="login" onclick="connect()">PIPO</button>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      function connect(){
-        var name = document.getElementById("nom").value
-        socket.emit("new player", name);
-      }
-    </script>
+
   </body>
 </html>

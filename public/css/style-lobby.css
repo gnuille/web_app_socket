@@ -1,0 +1,14 @@
+*{
+
+}
+
+.square {
+    margin: auto;
+    background: #92e8c9;
+    padding: 15px;
+
+}
+
+.btn {
+    cursor: pointer;
+}
