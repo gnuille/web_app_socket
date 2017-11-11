@@ -1,0 +1,4 @@
+[ RowDataPacket { id: 1, name: 'taula1' },
+  RowDataPacket { id: 2, name: 'taula2' },
+  RowDataPacket { id: 3, name: 'taula3' },
+  RowDataPacket { id: 4, name: 'taula4' } ]
