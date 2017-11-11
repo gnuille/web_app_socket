@@ -27,6 +27,36 @@ function checkinsert(user){
   });
 }
 
+function searchTables(key){
+  return new Promise(function (fulfill, reject){
+    query.getTables(key).done(function (res){
+      try {
+        console.log(res)
+        registeredSockets[0].emit("table_ready", res);
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+    });
+
+}
+
+function createRoom(nomRoom){
+  return new Promise(function (fulfill, reject){
+    query.existsTable(nomRoom).done(function (res){
+      try {
+        console.log('test ' + res[0].numero)
+
+        if(res[0].numero == 0){
+          query.createNewGameTable(nomRoom);
+        }
+        registeredSockets[0].emit("room created", res[0].numero);
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+  });
+}
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')
@@ -36,7 +66,8 @@ io.on('connection', function(socket){
   })
 
  socket.on("new player", checkinsert)
-
+ socket.on("search tables", searchTables)
+ socket.on("new room", createRoom)
 
 });
 

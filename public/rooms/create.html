@@ -23,8 +23,12 @@
       <script type="text/javascript">
         var socket = io();
         function submit_room(){
-
+          socket.emit("new room", document.getElementById("to_create").value)
         }
+        socket.on("room created", function(correct){
+          if(correct == 0)window.location.href = "../lobby.html";
+          else console.log("pene")
+        })
       </script>
     </form>
   </div>

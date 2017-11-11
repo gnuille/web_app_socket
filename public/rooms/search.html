@@ -16,7 +16,7 @@
   </ul>
   <div class="search-div" id ="">
     <input type="" id="key" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
-    <input type="button" onClikc="search()" value="Search">
+    <input type="button" onClick="search()" value="Search">
     <div class="rooms" style="margin: 10px;">
       <table class="table table-hover table-dark">
         <thead>
@@ -32,23 +32,24 @@
             var socket = io();
 
             function search(){
-              socket.emit("search tables", document.getElementById("key"));
+              console.log("ClicK! "+document.getElementById("key"))
+              socket.emit("search tables", document.getElementById("key").value);
             }
-            socket.on("send tables", function(res){
+            socket.on("table_ready", function(res){
               var html = '<tr>';
               for (var i = 0; i < res.length; ++i) {
                   var name = res[i].name;
                   html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
               };
               $('#list').append(html);
-            })            
+            })
             </script>
           </tbody>
       </thead>
     </table>
     </div>
   </div>
-  <p style="margin: 10px;"> Redirecciona al Lobby un cop clica join a una sala</p>
+
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

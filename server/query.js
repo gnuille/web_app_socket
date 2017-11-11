@@ -33,7 +33,7 @@ module.exports = {
         console.log('User deleted ', nameTable);
       });
   },
-  
+
   //Get users
   getAllUsers: function(){
     console.log("Get all users from database");
@@ -42,7 +42,7 @@ module.exports = {
         console.log('All users ', results);
       });
   },
-  
+
   //Get users
   getAllTables: function(){
     console.log("Get all tables from database");
@@ -51,17 +51,19 @@ module.exports = {
         console.log('All tables ', results);
       });
   },
-  
+
   getTables: function(key){
     console.log("Searching a table");
     return new Promise(function (fulfill, reject){
-    connection.query('select * from tables where nom = ?' ,key, function (error, results, fields) {
+    var quer= 'select * from tables where name LIKE \'\%' + key+'\%\''
+    console.log(quer)
+    connection.query(quer, function (error, results, fields) {
         if (error) throw(error);
         else fulfill(results);
       });
     });
   },
-  
+
   //Add player to table
   associatePlayerWithTable: function(idTable, idUser){
     console.log("New player-table association %s %s", idTable, idUser);
@@ -70,7 +72,7 @@ module.exports = {
         console.log('User deleted ', idTable);
       });
   },
-  
+
   //Add games to tables
   associateTableWithGames: function(idTable, idUser){
     console.log("New player-table association %s %s", idTable, idUser);
@@ -79,7 +81,7 @@ module.exports = {
         console.log('User deleted ', idTable);
       });
   },
-  
+
   //Add challenge to a set of challenges
   createChallenge: function(challenge, idSet){
     console.log("New challenge %s added to %s", challenge, idSet);
@@ -87,7 +89,7 @@ module.exports = {
         if (error) throw error;
       });
   },
-  
+
   //Add a new set of challenges
   createChallenge: function(challenge){
     console.log("New questionSet %s added", challenge);
@@ -95,7 +97,7 @@ module.exports = {
         if (error) throw error;
       });
   },
-  
+
   //Add new table
   deleteNewGameTable: function(nameTable){
     console.log("New game table created %s", nameTable);
@@ -104,7 +106,7 @@ module.exports = {
         console.log('User deleted ', nameTable);
       });
   },
-  
+
   existsUser: function(nameUser){
     console.log("checking user " + nameUser);
     return new Promise(function (fulfill, reject){
