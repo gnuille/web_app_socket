@@ -7,6 +7,7 @@ app.use(express.static(__dirname + '/public'))
 //sql
 
 var query = require(__dirname + '/server/query.js')
+var registeredSockets = [];
 
 function checkinsert(user){
   var correct;
@@ -14,7 +15,7 @@ function checkinsert(user){
   if(correct){
     query.newConnection(user);
   }
-  socket.emit("can enter", correct);
+  registeredSockets[data.socketid].emit("can enter", correct);
 }
 
 io.on('connection', function(socket){
@@ -25,6 +26,8 @@ io.on('connection', function(socket){
   })
 
  socket.on("new player", checkinsert)
+ 	registeredSockets[socket.id] = socket;
+
 
 
 });
