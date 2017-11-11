@@ -29,23 +29,19 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="/socket.io/socket.io.js"></script>
             <script type="text/javascript">
+            var socket = io();
+
             function search(){
               socket.emit("search tables", document.getElementById("key"));
             }
-            var socket = io();
-            var json = [
-              { id: 1, name: 'taula1' },
-              { id: 2, name: 'taula2' },
-              { id: 3, name: 'taula3' },
-              { id: 4, name: 'taula4' }
-            ];
-
-            var html = '<tr>';
-            for (var i = 0; i < json.length; ++i) {
-                var name = json[i].name;
-                html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
-            };
-            $('#list').append(html);
+            socket.on("send tables", function(res){
+              var html = '<tr>';
+              for (var i = 0; i < res.length; ++i) {
+                  var name = res[i].name;
+                  html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
+              };
+              $('#list').append(html);
+            })            
             </script>
           </tbody>
     </div>

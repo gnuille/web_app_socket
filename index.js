@@ -20,7 +20,8 @@ function checkinsert(user){
 }
 
 function sendRooms(key){
-  
+  var res = query.getTables(key);
+  registeredSockets[0].emit("send tables", res)
 }
 
 io.on('connection', function(socket){
