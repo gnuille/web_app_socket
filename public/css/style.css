@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 body {
-    background: #cefce7;
     display: flex;
     min-height: 100vh;
 
@@ -15,7 +14,7 @@ body {
     margin: auto;
     width: 50%;
     max-width: 400px;
-    background: #6fe4af;
+    background: ;
     padding: 15px;
     border: 1px solid #7a7a7a;
 
@@ -24,7 +23,7 @@ body {
 h2{
     text-align: center;
     margin-bottom: 20px;
-    color:  #0c5932;
+    color:  white;
 }
 
 .form-group {

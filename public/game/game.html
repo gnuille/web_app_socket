@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="main-div"
+    style="text-align: center;
+    margin-top: 15%;
+    margin-left: 15%;
+    border: 3px solid grey;
+    width: 60%;
+    height: 300px;">
+      <h3>Don't lie... </h3>
+      <br>
+      <br>
+      <p id="game-id">
+        <script>
+        function randomNumber(min,max){
+          return Math.random()*(max-min)+min;
+        };
+          var jsoname   = [{'asd'},{'juju'}],
+              jsonquest = [{'jejeje'},{'juju'}],
+              html = jsoname[randomNumber(0,jsoname.length)] + ': <br>' + jsonquest[randomNumber(0,jsonquest.length)];
+          $(#game-id).append(html);
+        </script>
+      </p>
+      <br>
+      <br>
+      <input type="submit" id="clickon" value="Ask me!">
+    </div>
+  </body>
+</html>
