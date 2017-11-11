@@ -32,7 +32,7 @@
             var socket = io();
 
             function search(){
-              $('.rooms').empty();
+              $('#list').empty();
               console.log("ClicK! "+document.getElementById("key"))
               socket.emit("search tables", document.getElementById("key").value);
             }
