@@ -158,4 +158,15 @@ module.exports = {
     });
   }
 
+  getTableNameByUserName: function(nameUser){
+    console.log("Get table name from user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('SELECT t.name from tables t, users u, tablesusers tu WHERE t.id = tu.idTables and u.id = tu.idUser and u.name = ?' , nameUser,  function (error, results, fields) {
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
+  }
+
+
 }
