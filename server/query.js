@@ -37,10 +37,12 @@ module.exports = {
   //Get users
   getAllUsers: function(){
     console.log("Get all users from database");
+    return new Promise(function (fulfill, reject){
     connection.query('select * from users' , function (error, results, fields) {
-        if (error) throw error;
-        console.log('All users ', results);
+        if (error) throw(error);
+        else fulfill(results);
       });
+    });
   },
 
   //Get users
@@ -123,6 +125,33 @@ module.exports = {
     console.log("checking table " + nameTable);
       return new Promise(function (fulfill, reject){
         connection.query('SELECT COUNT(*) AS numero FROM tables WHERE name = ?', nameTable, function(error, results, fields){
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
+  },
+
+  updateUserToken: function(nameUser, sessionToken){
+    console.log("Updating token of user " + nameUser);
+    connection.query('UPDATE users SET session_token = ? WHERE name = ?' , sessionToken , nameUser, function (error, results, fields) {
+        if (error) throw error;
+      });
+  },
+
+  getUserId: function(nameUser){
+    console.log("Get id user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('select id from users where name = ?' , nameUser,  function (error, results, fields) {
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
+  },
+
+  getTableId: function(nameTable){
+    console.log("Get id user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('select id from tables where name = ?' , nameTable,  function (error, results, fields) {
         if (error) throw(error);
         else fulfill(results);
       });

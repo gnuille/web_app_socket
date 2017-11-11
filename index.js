@@ -69,20 +69,6 @@ function write_all_tables() {
     }, reject);
     });
 }
-
-/*function searchLobby(nickname){
-  return new Promise(function (fulfill, reject) {
-    query.().done(function (res) {
-      try {
-        console.log(res)
-        registeredSockets[0].emit("table_found", res);
-      } catch (ex) {
-        reject(ex);
-      }
-    }, reject);
-    });
-}*/
-
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')

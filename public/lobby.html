@@ -20,7 +20,13 @@
 
                         <tbody  id="list">
                           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                          <script src="/socket.io/socket.io.js"></script>
                           <script type="text/javascript">
+                          var socket = io();
+                          socket.on("recived id", function(id){
+                            console.log(document.cookie)
+                            //socket.emit("store id nick", id, coockie)
+                          })
                           var json = [
                             { id: 1, name: 'user1' },
                             { id: 2, name: 'user2' },
