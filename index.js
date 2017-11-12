@@ -80,7 +80,7 @@ socket.on('all_tables',write_all_tables)
 socket.on("new player", checkinsert)
 socket.on("search tables", searchTables)
 socket.on("new room", createRoom)
-socket.on("recived nickname",searchLobby)
+//socket.on("recived nickname",searchLobby)
 });
 
 http.listen(3000, function(){

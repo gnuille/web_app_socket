@@ -156,7 +156,7 @@ module.exports = {
         else fulfill(results);
       });
     });
-  }
+  },
 
   getTableNameByUserName: function(nameUser){
     console.log("Get table name from user from database");

@@ -31,18 +31,21 @@
             <script type="text/javascript">
             var socket = io();
             socket.emit('all_tables');
-            
+
             function search(){
               $('#list').empty();
               console.log("ClicK! "+document.getElementById("key"))
               socket.emit("search tables", document.getElementById("key").value);
+            }
+            function joinLob(){
+              console.log(document.cookie)
             }
             socket.on("table_ready", function(res){
               var html = '<tr>';
 
               for (var i = 0; i < res.length; ++i) {
                   var name = res[i].name;
-                  html += '<td>'+name+'</td>' + '<td><button>Join!</button></td> </tr>' + '<tr>' ;
+                  html += '<td>'+name+'</td>' + '<td><button onClick="joinLob()">Join!</button></td> </tr>' + '<tr>' ;
               };
               $('#list').append(html);
             })
