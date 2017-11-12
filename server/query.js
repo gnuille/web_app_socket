@@ -1,6 +1,8 @@
 var mysql     = require('mysql');
 var Promise   = require('promise');
 var connection = mysql.createConnection({
+  multipleStatements: true,
+  debug    : true,
   host     : 'us-cdbr-sl-dfw-01.cleardb.net',
   user     : 'ba6f57bed71278',
   password : 'aa8200a1',
@@ -69,11 +71,11 @@ module.exports = {
   },
 
   //Add player to table
-  associatePlayerWithTable: function(idTable, idUser){
+  associatePlayerWithTable: function(idUser, idTable){
     console.log("New player-table association %s %s", idTable, idUser);
-    connection.query('INSERT INTO tablesUser(idUser, idTables) VALUES (?,?)', idTable , idUser , function (error, results, fields) {
+    connection.query('INSERT INTO tablesUser(idUser, idTables) VALUES (?,?)', [idUser , idTable] , function (error, results, fields) {
         if (error) throw error;
-        console.log('User deleted ', idTable);
+        console.log('User table added %s ', idTable);
       });
   },
 
@@ -138,10 +140,10 @@ module.exports = {
       });
   },
 
-  getUserId: function(nameUser){
+  getUserId: function(nameUser,nameTable){
     console.log("Get id user from database");
     return new Promise(function (fulfill, reject){
-    connection.query('select id from users where name = ?' , nameUser,  function (error, results, fields) {
+    connection.query('select id from users where name = ?; select id from tables where name = ?' , [nameUser, nameTable],  function (error, results, fields) {
         if (error) throw(error);
         else fulfill(results);
       });
@@ -152,6 +154,7 @@ module.exports = {
     console.log("Get id user from database");
     return new Promise(function (fulfill, reject){
     connection.query('select id from tables where name = ?' , nameTable,  function (error, results, fields) {
+
         if (error) throw(error);
         else fulfill(results);
       });
