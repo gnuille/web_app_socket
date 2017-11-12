@@ -18,7 +18,7 @@
 
 
 
-            <button type="submit" onClick="connect()" class="btn_log">Get in!</button>
+            <button type="submit" class="btn" onClick="connect()" class="btn_log">Get in!</button>
         </form>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,6 +33,7 @@
                 socket.emit("new player", name);
 
             }
+
             socket.on("can enter", function(correct){
               if(correct == 0){
 

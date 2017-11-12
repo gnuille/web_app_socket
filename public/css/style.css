@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
     box-sizing: border-box;
 }
 body {
@@ -12,18 +11,18 @@ body {
 
 .formulari {
     margin: auto;
-    width: 50%;
+    width: 70%;
     max-width: 400px;
-    background: ;
+    background: #cdc7c7;
     padding: 15px;
-    border: 1px solid #7a7a7a;
+    border: 1px solid #4b4949;
 
 }
 
 h2{
     text-align: center;
     margin-bottom: 20px;
-    color:  white;
+    color:  #454545;
 }
 
 .form-group {
@@ -36,20 +35,19 @@ h2{
 }
 
 
-
-.btn_log {
+.btn {
     text-align: center;
     margin-left: 35%;
     width: 28%;
     cursor: pointer;
-    background: #f4ebbe;
+    background: #f5db54;
     border: 1px solid #454545;
 
 }
 
-.btn_log:hover{
+.btn:hover{
     background: #454545;
-    color: white;
+    color:  #f5db54;
 }
 
 
