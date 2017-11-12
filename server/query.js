@@ -174,7 +174,7 @@ module.exports = {
   getTablePlayers: function(nameUser){
     console.log("Get table name from user from database");
     return new Promise(function (fulfill, reject){
-    connection.query('SELECT u.name from users u, tablesuser tu WHERE tu.idTables = (select tu.idTables from tablesuser tu, users u where tu.idUser = u.id and u.name = ?) and u.id = tu.idUser' , nameUser,  function (error, results, fields) {
+    connection.query('SELECT u.name from users u, tablesuser tu WHERE tu.idTables = (select tu.idTables from tablesuser tu, users u where tu.idUser = u.id and u.name = ?) and u.id = tu.idUser;' , nameUser,  function (error, results, fields) {
         if (error) throw(error);
         else fulfill(results);
       });
