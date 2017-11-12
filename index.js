@@ -94,7 +94,7 @@ function joinRoom(nameRoom, nameUser){
 }
 
 function updateIdNick(id, nick){
-  console.log("updating a token and updating lobby")
+
   return new Promise(function (fulfill, reject){
     query.getTokenTablePlayers(nick).done(function (res){
       try {
@@ -103,7 +103,7 @@ function updateIdNick(id, nick){
         for(var i = 0; i<res.length; i++){
           if(res[i].session_token != "null") {
             registeredSockets[0].broadcast.to(res[i].session_token).emit('update loby');
-            console.log(res[i].session_token)
+
           }
         }
         query.updateUserToken(nick, id);
@@ -118,7 +118,8 @@ function sendLobbyPlayers(id){
   return new Promise(function (fulfill, reject){
     query.getTablePlayers(id).done(function (res){
       try {
-        
+        console.log("actualitzant client "+id)
+        console.log(res);
         registeredSockets[0].emit("sendedLobbyInfo", res);
       } catch (ex) {
         reject(ex);

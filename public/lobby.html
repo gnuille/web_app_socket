@@ -25,13 +25,14 @@
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           socket.on("update loby", function(){
-                            console.log("m'actualitzo")
+                            console.log("m'actualitzo la meva identitat es "+document.cookie.split("=")[1])
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           socket.on("sendedLobbyInfo", function(info){
+                            console.log("xdlol dpfcjwd")
                             $('#list').empty();
                             var html = '<tr>';
-                            console.log("actualitzant")
+                            console.log(info)
                             for (var i = 0; i < info.length; ++i) {
                                 console.log(i+" "+info[i].name)
                                 html += '<td>'+ info[i].name +'</td>'+'</tr>'+'<tr>' ;
