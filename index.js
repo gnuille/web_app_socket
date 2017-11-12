@@ -75,29 +75,24 @@ function joinRoom(nameRoom, nameUser){
  var userId, tableId;
 
  return new Promise(function (fulfill, reject){
-     query.getUserId(nameUser).done(function (res){
+     query.getUserId(nameUser,nameRoom).done(function (res){
        try {
-         console.log("test user " + res[0].id)
-         userId = res[0].id;
-       } catch (ex) {
-         reject(ex);
-       }
-     }, reject);
- });
- return new Promise(function (fulfill, reject){
-     query.getTableId(nameRoom).done(function (res){
-       try {
-         console.log("test table " + res[0].id)
-         tableId = res[0].id;
+         userId = res[0][0].id;
+         tableId = res[1][0].id;
+
+        console.log("lmao " + userId)
+        console.log("lmao " + tableId)
+
+        query.associatePlayerWithTable(userId, tableId);
+        registeredSockets[0].emit("redirectLobby");
+
        } catch (ex) {
          reject(ex);
        }
      }, reject);
  });
 
- query.associatePlayerWithTable(tableId,userId);
 
- registeredSockets[0].emit("redirectLobby");
 
 }
 
