@@ -11,24 +11,37 @@
         <form class="formulari">
             <h2> Login </h2>
             <div class="form-group">
-                    <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
-                </div>
+              <p id="eta"></p>
+              <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
+
+              </div>
+
+
 
             <button type="submit" class="btn" onClick="connect()" class="btn_log">Get in!</button>
         </form>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
+            var nickcookie;
             var socket = io();
             function connect() {
                 var name = document.getElementById("nick").value;
-                if (name=="") alert("its")
-                else socket.emit("new player", name);
+
+                document.cookie = "nombrecookie=" + name + "; max-age=3600; path=/";
+
+                socket.emit("new player", name);
 
             }
 
             socket.on("can enter", function(correct){
-              if(correct == 0) window.location.href = "./rooms/create.html";
-              else alert("Username token, try another one:3");
+              if(correct == 0){
+
+                window.location.href = "./rooms/search.html";
+              }
+              else {
+                $('#eta').append('<h6 style="color:red; margin-top:0;"> username already exist </h6>');
+              }
             })
         </script>
     </body>

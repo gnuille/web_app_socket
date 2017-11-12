@@ -37,19 +37,23 @@ module.exports = {
   //Get users
   getAllUsers: function(){
     console.log("Get all users from database");
+    return new Promise(function (fulfill, reject){
     connection.query('select * from users' , function (error, results, fields) {
-        if (error) throw error;
-        console.log('All users ', results);
+        if (error) throw(error);
+        else fulfill(results);
       });
+    });
   },
 
   //Get users
   getAllTables: function(){
     console.log("Get all tables from database");
+    return new Promise(function (fulfill, reject){
     connection.query('select * from tables' , function (error, results, fields) {
-        if (error) throw error;
-        console.log('All tables ', results);
+        if (error) throw(error);
+        else fulfill(results);
       });
+    });
   },
 
   getTables: function(key){
@@ -125,6 +129,44 @@ module.exports = {
         else fulfill(results);
       });
     });
+  },
+
+  updateUserToken: function(nameUser, sessionToken){
+    console.log("Updating token of user " + nameUser);
+    connection.query('UPDATE users SET session_token = ? WHERE name = ?' , sessionToken , nameUser, function (error, results, fields) {
+        if (error) throw error;
+      });
+  },
+
+  getUserId: function(nameUser){
+    console.log("Get id user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('select id from users where name = ?' , nameUser,  function (error, results, fields) {
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
+  },
+
+  getTableId: function(nameTable){
+    console.log("Get id user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('select id from tables where name = ?' , nameTable,  function (error, results, fields) {
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
+  },
+
+  getTableNameByUserName: function(nameUser){
+    console.log("Get table name from user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('SELECT t.name from tables t, users u, tablesusers tu WHERE t.id = tu.idTables and u.id = tu.idUser and u.name = ?' , nameUser,  function (error, results, fields) {
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
   }
+
 
 }

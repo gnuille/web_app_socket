@@ -17,12 +17,17 @@
 
                         <tbody  id="list">
                           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                          <script src="/socket.io/socket.io.js"></script>
                           <script type="text/javascript">
+                          var socket = io();
+                          socket.on("recived id", function(id){
+                            socket.emit("update id nick", id, document.cookie.split("=")[1]);
+                          })
                           var json = [
-                            { id: 1, name: 'user1' },
-                            { id: 2, name: 'user2' },
-                            { id: 3, name: 'user3' },
-                            { id: 4, name: 'user4' }
+                            {  name: 'user1' },
+                            {  name: 'user2' },
+                            {  name: 'user3' },
+                            {  name: 'user4' }
                           ];
 
                           var html = '<tr>';
