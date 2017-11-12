@@ -115,6 +115,7 @@ function updateIdNick(id, nick){
 }
 
 function sendLobbyPlayers(id){
+  console.log("id is "+id)
   return new Promise(function (fulfill, reject){
     query.getTablePlayers(id).done(function (res){
       try {
@@ -135,6 +136,7 @@ io.on('connection', function(socket){
     //treure al nick de la BD
     console.log("a user disconected")
   })
+  io.sockets.emit('refresh_data');
 socket.on('all_tables',write_all_tables)
 socket.on("new player", checkinsert)
 socket.on("search tables", searchTables)
