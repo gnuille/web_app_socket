@@ -14,19 +14,21 @@
                     <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
                 </div>
 
-            <button type="submit" onClick="connect()" class="btn_log">Get in!</button>
+            <button type="submit" class="btn" onClick="connect()" class="btn_log">Get in!</button>
         </form>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
             function connect() {
                 var name = document.getElementById("nick").value;
-                socket.emit("new player", name);
+                if (name=="") alert("its")
+                else socket.emit("new player", name);
 
             }
+
             socket.on("can enter", function(correct){
               if(correct == 0) window.location.href = "./rooms/create.html";
-              else console.log("pene")
+              else alert("Username token, try another one:3");
             })
         </script>
     </body>
