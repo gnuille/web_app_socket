@@ -5,18 +5,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style-search.css">
 </head>
-<body>
+<body background="../imgs/background.jpg">
 
 <div class="container">
-  <h3>Choose a Room to start Playing (drinking)</h3>
+  <h3>Choose a Room to start playing</h3>
   <ul class="nav nav-tabs">
     <li class="active"><a href="#">Search</a></li>
     <li><a href="./create.html">Create Room</a></li>
   </ul>
   <div class="search-div" id ="">
-    <input type="" id="key" placeholder="Text the room's name here..." style="margin: 10px; width: 40%;">
-    <input type="button" onClick="search()" value="Search">
+    <input type="" id="key" placeholder="Text the room's name here..." style="margin: 10px; width: 40%; border: 1px solid #4b4949;">
+    <input type="button" class="btn"onClick="search()" value="Search">
     <div class="rooms" style="margin: 10px;">
       <table class="table table-hover table-dark">
         <thead>

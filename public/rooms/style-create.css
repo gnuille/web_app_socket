@@ -1,0 +1,32 @@
+.btn{
+    cursor: pointer;
+    background: #f5db54;
+    border: 1px solid #454545;
+
+}
+.btn:hover{
+    background: #454545;
+    color:  #f5db54;
+}
+
+.search-div{
+    background: rgba(219, 219, 219, 0.6);
+}
+
+.form-create{
+    background: rgba(219, 219, 219, 0.6);
+}
+.active a{
+    background: #f7f7f7 !important;
+    color: #454545 !important;
+}
+
+.nav-tabs > li > a{
+    color: #454545 !important;
+}
+.nav-tabs > li > a:hover{
+background-color: #cdc7c7 ;
+color: #1c1c1c;
+
+
+}

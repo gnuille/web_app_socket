@@ -5,19 +5,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style-create.css">
 </head>
-<body>
+<body background="../imgs/background.jpg">
 
 <div class="container">
-  <h3>Create a Room to let your friends join it :D</h3>
+  <h3>Create a Room to start playing with your friends :D</h3>
   <ul class="nav nav-tabs">
     <li><a href="./search.html">Search</a></li>
     <li class="active"><a href="#">Create Room</a></li>
   </ul>
   <div class="">
     <form class="form-create" action="#" method="post" >
-      <input type="text" id="to_create" placeholder="Text your room's name..." required style="margin: 10px; width: 60%;">
-      <input type="button" onClick="submit_room()" value="Create!">
+      <input type="text" id="to_create" placeholder="Text a cool room name..." required style="margin: 10px; width: 40%; border: 1px solid #4b4949;">
+      <input type="button" class="btn" onClick="submit_room()" value="Create!">
       <p style="margin: 10px;">redirecciona al lobby i ets l'admin</p>
       <script src="/socket.io/socket.io.js"></script>
       <script type="text/javascript">
