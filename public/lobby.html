@@ -24,7 +24,9 @@
                             socket.emit("update id nick", id, document.cookie.split("=")[1]);
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
-
+                          socket.on("update loby", function(){
+                            socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
+                          })
                           socket.on("sendedLobbyInfo", function(info){
                             var html = '<tr>';
                             for (var i = 0; i < info.length; ++i) {

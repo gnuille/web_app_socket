@@ -135,7 +135,7 @@ module.exports = {
 
   updateUserToken: function(nameUser, sessionToken){
     console.log("Updating token of user " + nameUser);
-    connection.query('UPDATE users SET session_token = ? WHERE name = ?' , sessionToken , nameUser, function (error, results, fields) {
+    connection.query('UPDATE users SET session_token = ? WHERE name = ?' , [sessionToken , nameUser], function (error, results, fields) {
         if (error) throw error;
       });
   },

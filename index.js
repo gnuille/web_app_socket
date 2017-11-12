@@ -94,7 +94,19 @@ function joinRoom(nameRoom, nameUser){
 }
 
 function updateIdNick(id, nick){
-  query.updateUserToken(nick, id);
+
+  return new Promise(function (fulfill, reject){
+    query.getTokenTablePlayers(nick).done(function (res){
+      try {
+        query.updateUserToken(nick, id);
+        for(var i = 0; i<res.length; ++i){
+          registeredSockets[0].broadcast.to(res[i]).emit('update loby');
+        }
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+    });
 }
 
 function sendLobbyPlayers(id){
