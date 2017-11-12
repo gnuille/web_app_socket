@@ -102,7 +102,7 @@ function joinRoom(nameRoom, nameUser){
 }
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
-  console.log('a user connected')
+  socket.emit("recived id", socket.id);
   socket.on('disconect', function(){
     //treure al nick de la BD
     console.log("a user disconected")

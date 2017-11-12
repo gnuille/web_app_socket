@@ -24,8 +24,7 @@
                           <script type="text/javascript">
                           var socket = io();
                           socket.on("recived id", function(id){
-                            console.log(document.cookie)
-                            //socket.emit("store id nick", id, coockie)
+                            socket.emit("update id nick", id, document.cookie.split("=")[1]);
                           })
                           var json = [
                             {  name: 'user1' },
