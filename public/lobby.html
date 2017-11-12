@@ -7,14 +7,13 @@
         <title>Lobby</title>
     </head>
     <body background="./imgs/background.jpg">
-        <h2> Lobby </h2>
+        <h2 class="container" style="margin-top: 10px; text-align: center;" > Welcome to the lobby, Wait with your partners</h2>
         <div class="container">
             <div class="row">
                 <div class="col">
                     <h5>Team mates: </h5>
                     <table class="table">
                       <thead>
-
                         <tbody  id="list">
                           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                           <script src="/socket.io/socket.io.js"></script>
@@ -29,7 +28,6 @@
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           socket.on("sendedLobbyInfo", function(info){
-                            console.log("xdlol dpfcjwd")
                             $('#list').empty();
                             var html = '<tr>';
                             console.log(info)
@@ -47,11 +45,11 @@
                 </div>
                 <div class="col">
                     <h5>Game: </h5>
-                    <div class="square" >
+                    <form class="square" action="./game/imatge_principal.html" method="post">
                         <p>Random hackerXperience</p>
-                        <button type="button" class="btn">Custom</button>
                         <button type="button" class="btn">Default</button>
-                    </div>
+                        <button type="button" class="btn">Custom</button>
+                    </form>
                 </div>
         </div>
     </body>
