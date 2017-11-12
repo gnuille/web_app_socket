@@ -94,14 +94,19 @@ function joinRoom(nameRoom, nameUser){
 }
 
 function updateIdNick(id, nick){
-
+  console.log("updating a token and updating lobby")
   return new Promise(function (fulfill, reject){
     query.getTokenTablePlayers(nick).done(function (res){
       try {
-        query.updateUserToken(nick, id);
-        for(var i = 0; i<res.length; ++i){
-          registeredSockets[0].broadcast.to(res[i]).emit('update loby');
+
+
+        for(var i = 0; i<res.length; i++){
+          if(res[i].session_token != "null") {
+            registeredSockets[0].broadcast.to(res[i].session_token).emit('update loby');
+            console.log(res[i].session_token)
+          }
         }
+        query.updateUserToken(nick, id);
       } catch (ex) {
         reject(ex);
       }
@@ -113,7 +118,7 @@ function sendLobbyPlayers(id){
   return new Promise(function (fulfill, reject){
     query.getTablePlayers(id).done(function (res){
       try {
-        console.log(res)
+        
         registeredSockets[0].emit("sendedLobbyInfo", res);
       } catch (ex) {
         reject(ex);

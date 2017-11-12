@@ -25,11 +25,15 @@
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           socket.on("update loby", function(){
+                            console.log("m'actualitzo")
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           socket.on("sendedLobbyInfo", function(info){
+                            $('#list').empty();
                             var html = '<tr>';
+                            console.log("actualitzant")
                             for (var i = 0; i < info.length; ++i) {
+                                console.log(i+" "+info[i].name)
                                 html += '<td>'+ info[i].name +'</td>'+'</tr>'+'<tr>' ;
                             };
                             $('#list').append(html);
