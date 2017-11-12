@@ -17,17 +17,33 @@
       <h3>Don't lie... </h3>
       <br>
       <br>
-      <p id="game-id">
+      <p id="game-id"></p>
         <script>
-        function randomNumber(min,max){
-          return Math.random()*(max-min)+min;
-        };
-          var jsoname   = [{'asd'},{'juju'}],
-              jsonquest = [{'jejeje'},{'juju'}],
-              html = jsoname[randomNumber(0,jsoname.length)] + ': <br>' + jsonquest[randomNumber(0,jsonquest.length)];
-          $(#game-id).append(html);
+          function randomNumber(min,max){
+            return Math.random()*(max-min)+min;
+          };
+
+          var jsoname = [
+            { id: '1', name: 'user1' },
+            { id: '1', name: 'user2' },
+            { id: '1', name: 'user3' },
+            { id: '1', name: 'user4' }
+          ];
+
+          var jsonquest = [
+            { id: '1', quest: 'user1' },
+            { id: '1', quest: 'user2' },
+            { id: '1', quest: 'user3' },
+            { id: '1', quest: 'user4' }
+          ];
+
+          var i     = randomNumber(0,jsoname.length-1);
+          var j     = randomNumber(0,jsonquest.length-1);
+          i = Math.floor(i);
+          j = Math.floor(j);
+          var html  =jsoname[i].name + ': <br>' + jsonquest[j].quest;
+          $('#game-id').append(html);
         </script>
-      </p>
       <br>
       <br>
       <input type="submit" id="clickon" value="Ask me!">
