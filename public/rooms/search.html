@@ -31,21 +31,23 @@
             <script type="text/javascript">
             var socket = io();
             socket.emit('all_tables');
-
+            socket.on("redirectLobby", function(){
+              window.location.href = "../lobby.html";
+            })
             function search(){
               $('#list').empty();
               console.log("ClicK! "+document.getElementById("key"))
               socket.emit("search tables", document.getElementById("key").value);
             }
-            function joinLob(){
-              console.log(document.cookie)
+            function joinLob(id){
+              socket.emit("join lobby",id, document.cookie.split("=")[1]);
             }
             socket.on("table_ready", function(res){
               var html = '<tr>';
 
               for (var i = 0; i < res.length; ++i) {
                   var name = res[i].name;
-                  html += '<td>'+name+'</td>' + '<td><button onClick="joinLob()">Join!</button></td> </tr>' + '<tr>' ;
+                  html += '<td>'+name+'</td>' + '<td><button id='+name+' onClick="joinLob(this.id)">Join!</button></td> </tr>' + '<tr>' ;
               };
               $('#list').append(html);
             })

@@ -69,6 +69,37 @@ function write_all_tables() {
     }, reject);
     });
 }
+
+function joinRoom(nameRoom, nameUser){
+
+ var userId, tableId;
+
+ return new Promise(function (fulfill, reject){
+     query.getUserId(nameUser).done(function (res){
+       try {
+         console.log("test user " + res[0].id)
+         userId = res[0].id;
+       } catch (ex) {
+         reject(ex);
+       }
+     }, reject);
+ });
+ return new Promise(function (fulfill, reject){
+     query.getTableId(nameRoom).done(function (res){
+       try {
+         console.log("test table " + res[0].id)
+         tableId = res[0].id;
+       } catch (ex) {
+         reject(ex);
+       }
+     }, reject);
+ });
+
+ query.associatePlayerWithTable(tableId,userId);
+
+ registeredSockets[0].emit("redirectLobby");
+
+}
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   console.log('a user connected')
@@ -80,7 +111,7 @@ socket.on('all_tables',write_all_tables)
 socket.on("new player", checkinsert)
 socket.on("search tables", searchTables)
 socket.on("new room", createRoom)
-//socket.on("recived nickname",searchLobby)
+socket.on("join lobby", joinRoom)
 });
 
 http.listen(3000, function(){
