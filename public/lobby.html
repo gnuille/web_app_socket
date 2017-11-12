@@ -23,8 +23,8 @@
                             socket.emit("update id nick", id, document.cookie.split("=")[1]);
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
-                          socket.on("update loby", function(){
-                            console.log("m'actualitzo la meva identitat es "+document.cookie.split("=")[1])
+                          socket.on("refresh_data",function(){
+                            console.log("soketing")
                             socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           socket.on("sendedLobbyInfo", function(info){
