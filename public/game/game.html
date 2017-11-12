@@ -37,14 +37,26 @@
 
           var i     = randomNumber(0,jsoname.length-1);
           var j     = randomNumber(0,jsonquest.length-1);
-          i = Math.floor(i);
-          j = Math.floor(j);
-          var html  =jsoname[i].name + ': <br>' + jsonquest[j].quest;
+              i     = Math.floor(i);
+              j     = Math.floor(j);
+          var html  = jsoname[i].name + ': <br>' + jsonquest[j].quest;
           $('#game-id').append(html);
         </script>
       <br>
       <br>
-      <input type="submit" class="btn" id="clickon" value="Ask me!">
+      <input type="submit" class="btn" onclick="update()"  value="Ask me!">
+      <script>
+        function update() {
+        $('#game-id').empty();
+        var i     = randomNumber(0,jsoname.length-1);
+        var j     = randomNumber(0,jsonquest.length-1);
+            i     = Math.floor(i);
+            j     = Math.floor(j);
+        var html  = jsoname[i].name + ': <br>' + jsonquest[j].quest;
+        $('#game-id').append(html);
+
+        }
+      </script>
     </div>
   </body>
 </html>
