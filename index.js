@@ -108,7 +108,7 @@ function updateIdNick(id, nick){
 function sendLobbyPlayers(id){
   query.-------().done(function (res){
     try {
-      
+      registeredSockets[0].emit("sendedLobbyInfo", res);
     } catch (ex) {
       reject(ex);
     }
