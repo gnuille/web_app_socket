@@ -91,9 +91,6 @@ function joinRoom(nameRoom, nameUser){
        }
      }, reject);
  });
-
-
-
 }
 
 function updateIdNick(id, nick){
@@ -101,14 +98,17 @@ function updateIdNick(id, nick){
 }
 
 function sendLobbyPlayers(id){
-  query.-------().done(function (res){
-    try {
-      registeredSockets[0].emit("sendedLobbyInfo", res);
-    } catch (ex) {
-      reject(ex);
-    }
-  }, reject);
-  });
+  return new Promise(function (fulfill, reject){
+    query.getTablePlayers(id).done(function (res){
+      try {
+        console.log(res)
+        registeredSockets[0].emit("sendedLobbyInfo", res);
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+    });
+
 }
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
