@@ -166,7 +166,7 @@ module.exports = {
         else fulfill(results);
       });
     });
-  }
+  }, 
 
 
 }

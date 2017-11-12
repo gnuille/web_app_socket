@@ -25,6 +25,7 @@
                           var socket = io();
                           socket.on("recived id", function(id){
                             socket.emit("update id nick", id, document.cookie.split("=")[1]);
+                            socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
                           })
                           var json = [
                             {  name: 'user1' },

@@ -100,6 +100,21 @@ function joinRoom(nameRoom, nameUser){
  registeredSockets[0].emit("redirectLobby");
 
 }
+
+function updateIdNick(id, nick){
+  query.updateUserToken(nick, id);
+}
+
+function sendLobbyPlayers(id){
+  query.-------().done(function (res){
+    try {
+      
+    } catch (ex) {
+      reject(ex);
+    }
+  }, reject);
+  });
+}
 io.on('connection', function(socket){
   registeredSockets[0] = socket;
   socket.emit("recived id", socket.id);
@@ -112,6 +127,8 @@ socket.on("new player", checkinsert)
 socket.on("search tables", searchTables)
 socket.on("new room", createRoom)
 socket.on("join lobby", joinRoom)
+socket.on("update id nick", updateIdNick)
+socket.on("getLobbyPlayers", sendLobbyPlayers)
 });
 
 http.listen(3000, function(){
