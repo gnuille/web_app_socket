@@ -11,12 +11,17 @@
         <form class="formulari">
             <h2> Login </h2>
             <div class="form-group">
-                    <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
-                </div>
+              <p id="eta"></p>
+              <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
+
+              </div>
+
+
 
             <button type="submit" onClick="connect()" class="btn_log">Get in!</button>
         </form>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             var nickcookie;
             var socket = io();
@@ -29,11 +34,13 @@
 
             }
             socket.on("can enter", function(correct){
-              if(correct == 0){            
+              if(correct == 0){
 
                 window.location.href = "./rooms/create.html";
               }
-              else console.log("pene")
+              else {
+                $('#eta').append('<h6 style="color:red; margin-top:0;"> username already exist </h6>');
+              }
             })
         </script>
     </body>
