@@ -1,27 +1,17 @@
-## Inspiration
 
-We go out so often together and we don't have many fun games to enjoy while drinking (water or soda) and we wanted to create a fun app that people form all the world :P
+# Node.js getting started application
+The Getting Started tutorial for Node.js uses this sample application to provide you with a sample workflow for working with any Node.js app on IBM Cloud or in IBM Cloud Private; you set up a development environment, deploy an app locally and on the cloud, and then integrate a IBM Cloud database service in your app.
 
-## What it does
+The Node.js app uses [Express Framework](https://expressjs.com) and [Cloudant noSQL DB service](https://console.bluemix.net/catalog/services/cloudant-nosql-db) to add information to a database and then return information from a database to the UI. To learn more about how the app connects to Cloudant, see the [Cloudant library for Node.js](https://www.npmjs.com/package/cloudant).
 
-It's a Truth or Dare like game that allows you to play with your friends with a default set of questions/challenges or create a new one for more fun. We build a lobby with rooms, so you can play with your friends and multiple instances of the game can run at the same time, begin updated simultaneous to all clients.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/IBM-Bluemix/get-started-java/master/docs/GettingStarted.gif" width="300" alt="Gif of the sample app contains a title that says, Welcome, a prompt asking the user to enter their name, and a list of the database contents which are the names Joe, Jane, and Bob. The user enters the name, Mary and the screen refreshes to display, Hello, Mary, I've added you to the database. The database contents listed are now Mary, Joe, Jane, and Bob.">
+</p>
 
-## How we built it 
+The following steps are the general procedure to set up and deploy your app to IBM Cloud. See more detailed instructions in the [Getting started tutorial for Node.js](https://console.bluemix.net/docs/runtimes/nodejs/getting-started.html#getting-started-with-node-js-on-bluemix).
 
-We build it with node.js, sql and sockets.io for the backend and javascript, html5 and css3 for the frontend. And for the databases we used an IBM instance to have the database synchronized at all times.
+The starter application for IBM Cloud Private guides you through a similar process. However, instead of hosting both your service and application in the same cloud environment, you use a user-provided service. This guide shows you how to deploy your application to IBM Cloud Private and bind it to a Cloudant Database in IBM Cloud. For the complete procedure, see [Working with user-provided services and the Node.js starter app](https://www.ibm.com/support/knowledgecenter/SSBS6K_2.1.0/cloud_foundry/buildpacks/buildpacks_using_nodejsapp.html).
 
-## Challenges we ran into
+## Before you begin
 
-Socket.io communication was a pain in the ass for sure, we had many problems when we had to update all clients connected to a room. Also, some of the database communication was kind of messy because we only have 5 connections at the same time.
-
-## Accomplishments that we're proud of
-
-Well, everything, it was our first hackathon together working with technologies that we were using for first time and was so nice to see what we were able to accomplish.
-
-## What we learned
-
-As we said before, it's our first time with that kind of technologies so in 24h we have learned fronted, backend, socket communication, databases, cloud deployment.... =)
-
-## What's next for Answer me, will you?
-
-We will add new games in a near future, maybe making an app from the website and improve some internal systems
+You'll need a [IBM Cloud account](https://console.ng.bluemix.net/registration/), [Git](https://git-scm.com/downloads), [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads), and [Node](https://nodejs.org/en/) installed. If you use [IBM Cloud Private](https://www.ibm.com/cloud-computing/products/ibm-cloud-private/), you need access to the [IBM Cloud Private Cloud Foundry](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0/cloud_foundry/overview.html) environment.

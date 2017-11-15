@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="/login/style.css">
+    </head>
+    <body background="/res/img/background.jpg">
+        <form class="formulari" action ="javascript:connect()">
+            <h2> Login </h2>
+            <div class="form-group">
+              <p id="repeted-username"></p>
+              <input type="text" class="form-control" id="nick" placeholder="&#128187; User name" required>
+
+            </div>
+            <input type="submit" value="get in!" class="btn"  class="btn_log">
+        </form>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/login/login.js"></script>
+
+    </body>
+</html>
