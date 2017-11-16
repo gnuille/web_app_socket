@@ -71,13 +71,33 @@ function respcreatetable(name, socket){
         if(valid){
           query.createNewGameTable(name)
         }
-        socket.emit("resp_create", valid)
+        socket.emit("resp_create", valid, name)
       }catch (ex){
         reject(ex)
       }
     }, reject)
   })
 }
+
+function respjoinlobby(nickname, tablename, socket){
+  var userId, tableId;
+
+  return new Promise(function (fulfill, reject){
+    query.getUserId(nickname,tablename).done(function (res){
+      try {
+        userId = res[0][0].id;
+        tableId = res[1][0].id;
+
+        query.associatePlayerWithTable(userId, tableId);
+        socket.emit("redirectLobby");
+
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+  });
+}
+
 io.on("connection", function(socket){
   socket.on("login", function(nick){
     resplogin(nick,socket)
@@ -88,6 +108,9 @@ io.on("connection", function(socket){
 
   socket.on("create_table", function(name){
     respcreatetable(name, socket)
+  })
+  socket.on("enter", function(nickname, tablename){
+    respjoinlobby(nickname, tablename, socket)
   })
 })
 

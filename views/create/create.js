@@ -5,10 +5,15 @@ function create(){
   socket.emit("create_table", name)
 }
 
-socket.on("resp_create", function(valid){
+socket.on("resp_create", function(validn tablename){
   if(valid){
-    window.location.href = "/search/search.html";
+    var nick = sessionStorage.getItem("nick")
+    socket.emit("enter",nick, tablename)
   }else{
     document.getElementById("error").innerHTML = "Table name already exists sorry juju"
   }
+})
+
+socket.on("redirectLobby", function(){
+  window.location.href = "/lobby/lobby.html"
 })

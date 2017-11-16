@@ -1,4 +1,4 @@
-socket = io();
+
 
 function writeTables(res){
   $('#list').empty();
@@ -15,10 +15,15 @@ function search(){
 }
 
 function joinLob(tablename){
-  //read nick cookie
-  socket.emit("join_lobby", tablename)
+  var nick = sessionStorage.getItem("nick")
+  socket.emit("enter",nick, tablename)
 }
 
+socket = io();
 socket.emit("gather_tables", "")
 
 socket.on("tables", writeTables)
+
+socket.on("redirectLobby", function(){
+  window.location.href = "/lobby/lobby.html"
+})
