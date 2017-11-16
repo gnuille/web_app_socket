@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style-lobby.css">
+        <link rel="stylesheet" href="/lobby/style.css">
         <title>Lobby</title>
     </head>
-    <body background="./imgs/background.jpg">
+    <body background="/res/background.jpg">
         <h2 class="container" style="margin-top: 10px; text-align: center;" > Welcome to the lobby, Wait with your partners</h2>
         <div class="container">
             <div class="row">
@@ -15,30 +15,6 @@
                     <table class="table">
                       <thead>
                         <tbody  id="list">
-                          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                          <script src="/socket.io/socket.io.js"></script>
-                          <script type="text/javascript">
-                          var socket = io();
-                          socket.on("recived id", function(id){
-                            socket.emit("update id nick", id, document.cookie.split("=")[1]);
-                            socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
-                          })
-                          socket.on("refresh_data",function(){
-                            console.log("soketing")
-                            socket.emit("getLobbyPlayers",document.cookie.split("=")[1]);
-                          })
-                          socket.on("sendedLobbyInfo", function(info){
-                            $('#list').empty();
-                            var html = '<tr>';
-                            console.log(info)
-                            for (var i = 0; i < info.length; ++i) {
-                                console.log(i+" "+info[i].name)
-                                html += '<td>'+ info[i].name +'</td>'+'</tr>'+'<tr>' ;
-                            };
-                            $('#list').append(html);
-                          })
-
-                          </script>
                         </tbody>
                     </thead>
                   </table>
@@ -52,5 +28,8 @@
                     </form>
                 </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/lobby/lobby.js"></script>
     </body>
 </html>

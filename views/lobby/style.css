@@ -1,0 +1,38 @@
+.square {
+    margin-top: 15px;
+
+    text-align: center;
+    margin: auto;
+    background: rgba(233, 227, 227, 0.8);
+    <!-- padding: 15px; -->
+    width: 40%;
+    border: 1px solid #4b4949;
+
+}
+.col{
+    border: 1px solid #4b4949;
+    background: rgba(219, 219, 219, 0.6);
+    color: #454545;
+}
+.table {
+    background: rgba(219, 219, 219, 0.8);
+
+}
+
+.btn{
+    cursor: pointer;
+    background: #f5db54;
+    border: 1px solid #454545;
+    margin-bottom: 15px;
+
+}
+.btn:hover{
+    background: #454545;
+    color:  #f5db54;
+}
+
+
+.table {
+
+
+}

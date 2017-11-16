@@ -70,6 +70,7 @@ function respcreatetable(name, socket){
 
         if(valid){
           query.createNewGameTable(name)
+
         }
         socket.emit("resp_create", valid, name)
       }catch (ex){

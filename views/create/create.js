@@ -5,7 +5,7 @@ function create(){
   socket.emit("create_table", name)
 }
 
-socket.on("resp_create", function(validn tablename){
+socket.on("resp_create", function(valid, tablename){
   if(valid){
     var nick = sessionStorage.getItem("nick")
     socket.emit("enter",nick, tablename)
