@@ -99,6 +99,33 @@ function respjoinlobby(nickname, tablename, socket){
   });
 }
 
+function respgetlobby(nick, socket){
+  return new Promise(function(fulfill, reject){
+    query.getTableIdFromPlayer(nick).done(function(res){
+      try{
+        var room = res[0].idTables
+        console.log(room)
+        socket.join(room)
+        io.in(room).emit("update", room)
+      }catch (ex){
+        reject(ex)
+      }
+    }, reject)
+  })
+}
+
+function respgetdatatable(room, socket){
+  return new Promise(function(fulfill, reject){
+    query.getUsersFromTableId(room).done(function(res){
+      try{
+        io.in(room).emit("data_ready", res)
+      }catch (ex){
+        reject(ex)
+      }
+    }, reject)
+  })
+}
+
 io.on("connection", function(socket){
   socket.on("login", function(nick){
     resplogin(nick,socket)
@@ -112,6 +139,14 @@ io.on("connection", function(socket){
   })
   socket.on("enter", function(nickname, tablename){
     respjoinlobby(nickname, tablename, socket)
+  })
+
+  socket.on("join_room", function(nick){
+    respgetlobby(nick, socket)
+  })
+
+  socket.on("get_data_table", function(room){
+    respgetdatatable(room, socket)
   })
 })
 

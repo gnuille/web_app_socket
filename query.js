@@ -192,5 +192,23 @@ module.exports = {
       });
     });
   },
+  getTableIdFromPlayer: function(nameUser){
+    //console.log("Get id user from database");
+    return new Promise(function (fulfill, reject){
+    connection.query('SELECT idTables FROM tablesuser WHERE idUser IN ( SELECT id FROM users WHERE name = ?)' , nameUser,  function (error, results, fields) {
 
+        if (error) throw(error);
+        else fulfill(results);
+      });
+    });
+  },
+  getUsersFromTableId: function(idTable){
+    return new Promise(function (fulfill, reject){
+      connection.query('SELECT u.name FROM users u, tablesuser t WHERE t.idUser = u.id AND t.idTables = ?', idTable, function (error, results, fields){
+        if(error) throw(error);
+        else fulfill(results);
+      });
+    });
+  }
+//
 }
