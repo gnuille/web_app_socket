@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+
+}
+
+.formulari {
+    margin: auto;
+    width: 70%;
+    max-width: 400px;
+    background: #cdc7c7;
+    padding: 15px;
+    border: 1px solid #4b4949;
+
+}
+
+h2{
+    margin-top:20px;
+    margin-bottom: 20px;
+    color:  #454545;
+}
+
+h6 {
+    color: #7d0000;
+    margin-top:0;
+}
+
+.form-group {
+    padding: 5%;
+    width: 100%;
+    margin: 30px 0;
+
+
+}
+
+
+.btn {
+    text-align: center;
+    margin-left: 35%;
+    width: 28%;
+    cursor: pointer;
+    background: #f5db54;
+    border: 1px solid #454545;
+
+}
+
+.btn:hover{
+    background: #454545;
+    color:  #f5db54;
+}
+
+#repeted-username{
+  color: red;
+  text-align: center;
+}
+@media (max-width: 600px) {
+    form{
+        width: 75%;
+    }
+}
+
+@media (max-width: 400px) {
+    form{
+        width: 95%;
+    }
+}

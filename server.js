@@ -4,7 +4,7 @@ var cfenv = require("cfenv");
 var bodyParser = require('body-parser')
 var server = require('http').createServer(app);
 var io = require('socket.io')(server)
-var query = require(__dirname+'/query.js')
+var query = require(__dirname+'database/query.js')
 var fs = require("fs")
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -126,6 +126,14 @@ function respgetdatatable(room, socket){
   })
 }
 
+function create_set(room){
+  query.createChallengeSet(room+'set')
+}
+
+function addchallenge(challenge,room, socket){
+  query.createChallenge(challenge, room)
+}
+
 io.on("connection", function(socket){
   socket.on("login", function(nick){
     resplogin(nick,socket)
@@ -147,6 +155,15 @@ io.on("connection", function(socket){
 
   socket.on("get_data_table", function(room){
     respgetdatatable(room, socket)
+  })
+
+  socket.on("custom", function(room){
+    create_set(room)
+    io.to(room).emit('redir add question');
+  })
+
+  socket.on("new challenge", function(challenge, room){
+    addchallenge(challenge,room, socket);
   })
 })
 

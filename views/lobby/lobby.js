@@ -1,9 +1,11 @@
 var socket = io();
+
 socket.emit("join_room", sessionStorage.getItem("nick"))
 
 socket.on("update", function(room) {
   console.log("updating")
   socket.emit("get_data_table", room)
+  sessionStorage.setItem("room",room)
 })
 
 socket.on("data_ready", function(info) {
@@ -16,3 +18,14 @@ socket.on("data_ready", function(info) {
   };
   $('#list').append(html);
 })
+
+function begin_custom(){
+  socket.emit("custom", sessionStorage.getItem("room"));
+}
+
+socket.on("redir add question", function(){
+  window.location.href = "/addretos/addretos.html";
+})
+function begin_default(){
+
+}

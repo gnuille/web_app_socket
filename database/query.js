@@ -1,15 +1,8 @@
-var mysql     = require('mysql');
 var Promise   = require('promise');
-var connection = mysql.createConnection({
-  multipleStatements: true,
-  //debug    : true,
-  host     : 'us-cdbr-sl-dfw-01.cleardb.net',
-  user     : 'ba6f57bed71278',
-  password : 'aa8200a1',
-  database : 'ibmx_32dfec4ca009a8b'
-});
-connection.connect();
+var c = require(__dirname+'/connectdb.js')
 
+var connection = c.newconection();
+connection.connect();
 module.exports = {
   //Add user
   newConnection: function(nameUser){
@@ -97,7 +90,7 @@ module.exports = {
   },
 
   //Add a new set of challenges
-  createChallenge: function(challenge){
+  createChallengeSet: function(challenge){
     //console.log("New questionSet %s added", challenge);
     connection.query('INSERT INTO questionSet(challenge) VALUES (?)', challenge , function (error, results, fields) {
         if (error) throw error;

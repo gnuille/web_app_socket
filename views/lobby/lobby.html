@@ -23,11 +23,12 @@
                     <h5>Game: </h5>
                     <form class="square" action="./game/imatge_principal.html" method="post">
                         <p>Random hackerXperience</p>
-                        <button type="button" class="btn">Default</button>
-                        <button type="button" class="btn">Custom</button>
+                        <button type="button" onclick="begin_default()" class="btn">Default</button>
+                        <button type="button" onclick="begin_custom()"  class="btn">Custom</button>
                     </form>
                 </div>
-        </div>
+              </div>
+            </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/lobby/lobby.js"></script>
