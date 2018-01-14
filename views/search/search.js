@@ -4,7 +4,7 @@ function writeTables(res){
   $('#list').empty();
   var html = '<tr>';
   for (var i = 0; i < res.length; ++i) {
-      var name = res[i].name;
+      var name = res[i].roomname;
       html += '<td>'+name+'</td>' + '<td><button id=\''+name+'\' onClick="joinLob(this.id)">Join!</button></td> </tr>' + '<tr>' ;
   };
   $('#list').append(html);

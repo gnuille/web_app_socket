@@ -8,7 +8,7 @@ function connect(){
 }
 
 socket.on("resp_login", function(pass, nick){
-
+  console.log(pass, nick)
   if(pass){
     sessionStorage.setItem("nick", nick);
     window.location.href = "/search/search.html";
